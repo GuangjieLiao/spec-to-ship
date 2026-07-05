@@ -71,9 +71,10 @@ spec-to-ship/changes/<change-name>/
 ├── design.md
 ├── tasks.md
 ├── verify.md
-├── release.md
-└── prototype.md
+└── release.md
 ```
+
+Prototype-driven UI changes also create `prototype.md`.
 
 For projects that already use OpenSpec, optional schema support is included:
 
@@ -88,7 +89,7 @@ openspec schema validate spec-to-ship
 open -> design -> build -> verify -> release-ready -> archive
 ```
 
-The skill supports four modes:
+The skill supports five modes:
 
 - `tweak`: docs, copy, config value, or style-only changes.
 - `hotfix`: focused bug fix with limited blast radius.

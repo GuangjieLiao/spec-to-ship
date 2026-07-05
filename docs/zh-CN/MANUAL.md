@@ -72,9 +72,10 @@ spec-to-ship/changes/<change-name>/
 ├── design.md
 ├── tasks.md
 ├── verify.md
-├── release.md
-└── prototype.md
+└── release.md
 ```
+
+如果是原型驱动的 UI 任务，还会额外创建 `prototype.md`。
 
 你不需要先理解所有文件。第一次使用时，只要告诉 agent 需求，它会引导你完成确认。
 
@@ -224,7 +225,7 @@ spec-to-ship/archive/YYYY-MM-DD-<change-name>/
 
 OpenSpec 模式下，可以配合 OpenSpec 的 archive 能力。
 
-## 5. 四种模式
+## 5. 五种模式
 
 Spec to Ship 会先给任务分模式：
 

@@ -17,6 +17,17 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 change="$tmp/spec-to-ship/changes/sample-change"
 "$skill_dir/scripts/spec-to-ship-state.sh" init "$change" normal >/dev/null
+if [ -e "$change/prototype.md" ]; then
+  echo "ERROR: normal mode should not create prototype.md by default" >&2
+  exit 1
+fi
+
+prototype_change="$tmp/spec-to-ship/changes/prototype-change"
+"$skill_dir/scripts/spec-to-ship-state.sh" init "$prototype_change" prototype >/dev/null
+if [ ! -s "$prototype_change/prototype.md" ]; then
+  echo "ERROR: prototype mode should create prototype.md" >&2
+  exit 1
+fi
 
 if "$skill_dir/scripts/spec-to-ship-state.sh" set "$change" phase build >/tmp/spec-to-ship-direct-phase.out 2>&1; then
   echo "ERROR: direct phase mutation should be blocked" >&2

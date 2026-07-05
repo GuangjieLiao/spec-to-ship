@@ -192,7 +192,9 @@ EOF
     copy_template tasks "$dir/tasks.md"
     copy_template verify "$dir/verify.md"
     copy_template release "$dir/release.md"
-    copy_template prototype "$dir/prototype.md"
+    if [ "$mode" = "prototype" ]; then
+      copy_template prototype "$dir/prototype.md"
+    fi
     echo "Initialized $dir"
     ;;
   get)

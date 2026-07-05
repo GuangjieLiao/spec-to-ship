@@ -60,7 +60,7 @@ Use the first available location:
 2. New OpenSpec change if OpenSpec is installed and initialized.
 3. Local fallback: `spec-to-ship/changes/<change-name>/`
 
-Every change must contain:
+Every change must contain the core artifacts:
 
 ```text
 .spec-to-ship.yaml
@@ -70,8 +70,9 @@ design.md
 tasks.md
 verify.md
 release.md
-prototype.md
 ```
+
+Prototype-driven changes must also contain `prototype.md`.
 
 For OpenSpec projects, `proposal.md`, `design.md`, `tasks.md`, and `specs/**/spec.md` remain canonical if they already exist. `spec.md` may be a short index pointing at OpenSpec delta specs.
 
