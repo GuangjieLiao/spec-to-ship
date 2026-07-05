@@ -105,6 +105,7 @@ The skill supports four modes:
 
 ## Documentation
 
+- [中文说明手册](docs/zh-CN/MANUAL.md)
 - [Usage Guide](docs/USAGE.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Design Rationale](docs/DESIGN_RATIONALE.md)

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added Chinese manual at `docs/zh-CN/MANUAL.md`.
+
 ## 0.1.0
 
 - Initial public project structure.
