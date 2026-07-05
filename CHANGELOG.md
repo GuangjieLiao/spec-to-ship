@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added Chinese manual at `docs/zh-CN/MANUAL.md`.
+- Added prototype fidelity workflow support for screenshot/Figma/HTML prototype-driven UI work.
 
 ## 0.1.0
 

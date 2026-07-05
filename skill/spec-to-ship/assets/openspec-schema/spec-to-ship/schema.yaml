@@ -1,6 +1,6 @@
 name: spec-to-ship
 version: 1
-description: Spec to Ship workflow - proposal → specs → design → tasks → verify → release
+description: Spec to Ship workflow - proposal → specs → prototype → design → tasks → verify → release
 artifacts:
   - id: proposal
     generates: proposal.md
@@ -26,6 +26,15 @@ artifacts:
       Create a technical design explaining the chosen approach, alternatives, affected modules,
       data/API/security impact, test strategy, and rollback or mitigation notes.
     requires: [proposal, specs]
+  - id: prototype
+    generates: prototype.md
+    description: Prototype source, visual inventory, fidelity requirements, and accepted deviations
+    template: prototype.md
+    instruction: |
+      Create this artifact when the change is driven by a screenshot, Figma frame, HTML prototype,
+      visual mockup, or product reference. Record source, viewports, visible text, layout hierarchy,
+      assets, interactions, responsive behavior, and fidelity risks. If no prototype applies, mark N/A.
+    requires: [proposal]
   - id: tasks
     generates: tasks.md
     description: Implementation checklist with verification evidence expectations

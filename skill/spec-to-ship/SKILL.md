@@ -5,7 +5,7 @@ description: Spec to Ship workflow for AI-assisted software changes that need to
 
 # Spec to Ship
 
-Run a production-minded spec coding workflow. Prefer OpenSpec as the WHAT source of truth and Superpowers as the HOW execution discipline when they are available; otherwise use the local `spec-to-ship/` fallback artifacts in this skill.
+Run a production-minded spec coding workflow. Prefer OpenSpec as the WHAT source of truth and Superpowers as the HOW execution discipline when they are available; otherwise use the local `spec-to-ship/` fallback artifacts in this skill. When the user provides a prototype, screenshot, Figma export, HTML mockup, or visual reference, treat prototype fidelity as a first-class requirement rather than an optional polish step.
 
 This first version is intentionally runnable before team standards are finalized. Treat `references/engineering-constitution.md` as the default policy, then replace or extend it with real company rules after trial runs.
 
@@ -13,7 +13,8 @@ This first version is intentionally runnable before team standards are finalized
 
 - OpenSpec owns WHAT: problem, scope, capability spec, scenarios, archive.
 - Superpowers owns HOW: brainstorming, planning, TDD, debugging, review, branch finish.
-- This skill owns FLOW: mode routing, stage state, required human confirmations, verification evidence, release readiness.
+- Product design / image-to-code skills own visual reconstruction when a reference image or mockup must be implemented faithfully.
+- This skill owns FLOW: mode routing, stage state, prototype fidelity gates, required human confirmations, verification evidence, release readiness.
 
 Do not ask the user to understand schema or workflow internals before using the skill. Route the request, create the artifacts, and explain only the next decision point.
 
@@ -33,6 +34,7 @@ Comet-inspired mechanisms included in this skill:
 - Phase drift guard rules: `references/phase-guard.md`
 - Optional OpenSpec custom schema: `references/openspec-schema.md`
 - Optional semantic code index check through `scripts/spec-to-ship-doctor.sh`
+- Prototype fidelity protocol: `references/prototype-fidelity.md`
 
 ## Mode Routing
 
@@ -43,9 +45,12 @@ Pick one mode at the start and record it in state.
 | `tweak` | Copy/docs/config value/style-only, no behavior change, usually <= 2 files | open, build, verify, archive |
 | `hotfix` | Focused bug fix, no new capability/API/schema, usually <= 3 files | open, build, verify, release-ready, archive |
 | `normal` | Default feature/refactor/business change | all stages |
+| `prototype` | UI implementation from screenshot, Figma, HTML prototype, product mockup, or visual reference | all stages plus prototype fidelity gates |
 | `epic` | Multiple capabilities, multiple services, roadmap/PRD, or likely > 8 tasks | open, split into smaller changes |
 
 If unsure, choose `normal`. If a `tweak` or `hotfix` expands beyond its limits, pause and ask whether to upgrade to `normal`.
+
+If the user says the implementation must match a prototype, choose `prototype` unless the work is truly docs-only.
 
 ## Artifact Location
 
@@ -65,6 +70,7 @@ design.md
 tasks.md
 verify.md
 release.md
+prototype.md
 ```
 
 For OpenSpec projects, `proposal.md`, `design.md`, `tasks.md`, and `specs/**/spec.md` remain canonical if they already exist. `spec.md` may be a short index pointing at OpenSpec delta specs.
@@ -78,6 +84,8 @@ State defaults created by `spec-to-ship-state.sh init` include:
 - `review_mode: null`
 - `tdd_mode: null`
 - `verify_fail_count: 0`
+- `prototype_source: null`
+- `prototype_fidelity: not_applicable`
 
 Do not mutate `phase` directly. Use guard `--apply` or `spec-to-ship-state.sh transition`.
 
@@ -102,6 +110,13 @@ Goal: make the request clear enough to safely design or implement.
 
 `spec.md` must include behavior rules and edge cases. For UI/API/data/security changes, include the relevant scenario format from `references/spec-writing.md`.
 
+For prototype-driven UI work:
+
+1. Read `references/prototype-fidelity.md`.
+2. Save or reference the prototype source in `prototype.md`.
+3. Extract visible text, layout hierarchy, viewport assumptions, interaction states, assets, and fidelity risks.
+4. Add acceptance scenarios that explicitly mention visual parity, responsive behavior, and critical interactions.
+
 Guard:
 
 ```bash
@@ -120,16 +135,19 @@ Skip only for `tweak` and simple `hotfix`.
 
 1. Read `references/engineering-constitution.md`.
 2. Read relevant standards only when triggered:
+   - Prototype or screenshot implementation: `references/prototype-fidelity.md`
    - API change: `references/api-standards.md`
    - Database change: `references/database-standards.md`
    - Test strategy: `references/testing-standards.md`
    - Security-sensitive change: `references/security-review.md`
    - Production risk: `references/production-readiness.md`
-3. Use Superpowers `brainstorming` when available. If unavailable, conduct the same design discussion manually.
-4. Present 1-3 viable approaches, recommendation, tradeoffs, test strategy, and risks.
-5. Pause for user confirmation before writing the final design.
-6. Write `design.md`.
-7. Write a design checkpoint and context pack before moving to build.
+3. If the task is prototype-driven and a visual target is available, route visual implementation work through the product-design `image-to-code` workflow when available; otherwise manually apply `references/prototype-fidelity.md`.
+4. Use Superpowers `brainstorming` when available. If unavailable, conduct the same design discussion manually.
+5. Present 1-3 viable approaches, recommendation, tradeoffs, test strategy, and risks.
+6. For prototype mode, include a visual fidelity plan: source capture, target viewports, screenshot strategy, design QA gate, and acceptable deviations.
+7. Pause for user confirmation before writing the final design.
+8. Write `design.md`.
+9. Write a design checkpoint and context pack before moving to build.
 
 `design.md` must include:
 
@@ -139,6 +157,7 @@ Skip only for `tweak` and simple `hotfix`.
 - Data/API/security impact
 - Test strategy
 - Rollback or mitigation notes for production-sensitive changes
+- For prototype mode: visual target inventory, component mapping, responsive rules, and design QA method
 
 Guard:
 
@@ -166,10 +185,11 @@ Goal: implement without expanding scope silently.
    - review mode: off, standard, thorough
 3. Use Superpowers `writing-plans`, `executing-plans`, `test-driven-development`, `systematic-debugging`, and `requesting-code-review` when available and relevant.
 4. If CodeGraph is installed and indexed, use it for semantic navigation before broad file reads.
-5. Implement tasks.
-6. Keep `tasks.md` checked off as tasks complete.
-7. Write a build checkpoint after every meaningful task batch.
-8. If implementation changes scope, update `spec.md` and `design.md`; for medium/large scope drift, pause for user confirmation.
+5. For prototype mode, implement against the captured visual target. Do not redesign unless the user explicitly approves a deviation.
+6. Implement tasks.
+7. Keep `tasks.md` checked off as tasks complete.
+8. Write a build checkpoint after every meaningful task batch.
+9. If implementation changes scope or prototype interpretation, update `prototype.md`, `spec.md`, and `design.md`; for medium/large scope drift, pause for user confirmation.
 
 `tasks.md` must include tasks with evidence expectations, for example:
 
@@ -196,9 +216,10 @@ Goal: produce evidence, not claims.
 
 1. Run appropriate project checks: build, tests, lint/typecheck, focused manual checks.
 2. Run code review when review mode is `standard` or `thorough`.
-3. Fill `verify.md` with exact commands and results.
-4. Use hash-on-demand before rereading long artifacts: compare `context_hash` with `spec-to-ship-context.sh hash`.
-5. If any critical check fails, return to build after user confirmation.
+3. For prototype mode, run visual verification: launch the app, capture screenshots for the same viewport(s), compare with the source, and record design QA findings.
+4. Fill `verify.md` with exact commands and results.
+5. Use hash-on-demand before rereading long artifacts: compare `context_hash` with `spec-to-ship-context.sh hash`.
+6. If any critical check fails, return to build after user confirmation.
 
 `verify.md` must include:
 
@@ -208,6 +229,7 @@ Goal: produce evidence, not claims.
 - Acceptance scenario result
 - Review findings and disposition
 - Known residual risk
+- For prototype mode: screenshot paths, viewport sizes, visual mismatches, accepted deviations, and final fidelity result
 
 Guard:
 

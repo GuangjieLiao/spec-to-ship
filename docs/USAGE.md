@@ -31,6 +31,7 @@ Codex should classify the change:
 - `tweak`
 - `hotfix`
 - `normal`
+- `prototype`
 - `epic`
 
 If the project does not have OpenSpec, the fallback artifact directory is used:
@@ -63,6 +64,8 @@ Creates technical design:
 
 The stage writes a checkpoint and context pack before build.
 
+For prototype-driven UI work, this stage also creates or updates `prototype.md` with the source prototype, target viewport sizes, visible text inventory, layout/component inventory, assets, interaction states, responsive behavior, and accepted deviations.
+
 ### build
 
 Creates tasks and implements them.
@@ -83,6 +86,8 @@ Writes evidence into `verify.md`:
 - acceptance scenario checks
 - review findings
 - residual risk
+
+For prototype mode, verification must include visual evidence: source prototype path, implementation screenshot path, viewport size, visual mismatches, accepted deviations, and final fidelity result.
 
 ### release-ready
 

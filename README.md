@@ -16,6 +16,7 @@ OpenSpec and Superpowers are useful together, but using them directly often crea
 
 - requirements and technical design can become mixed together;
 - agents may skip clarification, TDD, review, or verification;
+- visual prototypes are often treated as loose inspiration instead of implementation contracts;
 - long tasks are hard to resume after context loss;
 - "done" is often claimed without evidence;
 - production release concerns are handled too late.
@@ -70,7 +71,8 @@ spec-to-ship/changes/<change-name>/
 ├── design.md
 ├── tasks.md
 ├── verify.md
-└── release.md
+├── release.md
+└── prototype.md
 ```
 
 For projects that already use OpenSpec, optional schema support is included:
@@ -91,6 +93,7 @@ The skill supports four modes:
 - `tweak`: docs, copy, config value, or style-only changes.
 - `hotfix`: focused bug fix with limited blast radius.
 - `normal`: default feature, refactor, or business change.
+- `prototype`: UI implementation from a screenshot, Figma frame, HTML prototype, or visual reference.
 - `epic`: large PRD or multiple capabilities that should be split.
 
 ## Key Mechanisms
@@ -101,6 +104,7 @@ The skill supports four modes:
 - **Auto transition**: controlled stage continuation with explicit decision points.
 - **Verification evidence**: commands, results, review notes, skipped checks, and residual risk.
 - **Release readiness**: rollback, monitoring, migrations, flags, security/privacy impact.
+- **Prototype fidelity**: visual target inventory, screenshot comparison, accepted deviations, and design QA.
 - **Optional OpenSpec schema**: formalizes verify/release artifacts when OpenSpec is used.
 
 ## Documentation

@@ -170,6 +170,8 @@ created_at: $now
 updated_at: $now
 review_mode: null
 tdd_mode: null
+prototype_source: null
+prototype_fidelity: not_applicable
 auto_transition: true
 context_compression: pack
 context_pack: null
@@ -190,6 +192,7 @@ EOF
     copy_template tasks "$dir/tasks.md"
     copy_template verify "$dir/verify.md"
     copy_template release "$dir/release.md"
+    copy_template prototype "$dir/prototype.md"
     echo "Initialized $dir"
     ;;
   get)

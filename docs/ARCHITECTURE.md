@@ -32,6 +32,7 @@ Detailed policies and mechanisms:
 - `context-management.md`: context pack, checkpoints, active/passive compression.
 - `phase-guard.md`: rules that prevent phase drift.
 - `openspec-schema.md`: optional OpenSpec schema usage.
+- `prototype-fidelity.md`: screenshot, Figma, HTML prototype, and mockup implementation fidelity.
 - API, database, testing, security, and production readiness guides.
 
 Design choice: progressive disclosure.
@@ -97,6 +98,14 @@ Design choice: checkpoint after design decisions and task batches.
 
 Benefit: after context loss, the agent can resume from facts on disk.
 
+### `references/prototype-fidelity.md`
+
+Defines how to treat screenshots, Figma frames, HTML prototypes, and mockups as implementation contracts.
+
+Design choice: prototype fidelity is a mode and a verification gate, not a vague instruction.
+
+Benefit: UI work can be checked with source screenshots, implementation screenshots, viewport sizes, mismatch lists, and accepted deviations.
+
 ### `scripts/verify-production-ready.sh`
 
 Checks that `release.md` contains the minimum production readiness sections.
@@ -124,6 +133,7 @@ Benefit: teams can trial the workflow without committing to OpenSpec schema cust
 ```text
 User request
   -> open artifacts
+  -> prototype artifact when visual reference exists
   -> design artifact
   -> context pack + checkpoint
   -> tasks

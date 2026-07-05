@@ -60,6 +60,11 @@ case "$stage" in
       require_file design.md
       require_text design.md "Chosen Approach|技术方案|方案"
       require_text design.md "Test Strategy|测试策略"
+      if [ "$mode" = "prototype" ]; then
+        require_file prototype.md
+        require_text prototype.md "Source|来源|Prototype|原型"
+        require_text design.md "visual|视觉|prototype|原型|fidelity|还原"
+      fi
     fi
     ;;
   build)
@@ -76,6 +81,9 @@ case "$stage" in
     require_text verify.md "Residual Risk|风险"
     if grep -Eiq 'critical.*fail|fail.*critical|build failed|test failed' "$dir/verify.md"; then
       fail "verify.md contains critical failure wording"
+    fi
+    if [ "$mode" = "prototype" ]; then
+      require_text verify.md "Screenshot|截图|viewport|视口|visual|视觉|fidelity|还原"
     fi
     ;;
   release-ready)

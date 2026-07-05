@@ -33,7 +33,7 @@ hash_file() {
 }
 
 artifact_files() {
-  for file in proposal.md spec.md design.md tasks.md verify.md release.md; do
+  for file in proposal.md spec.md prototype.md design.md tasks.md verify.md release.md; do
     [ -f "$dir/$file" ] && printf '%s\n' "$dir/$file"
   done
   if [ -d "$dir/specs" ]; then
