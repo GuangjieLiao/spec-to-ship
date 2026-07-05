@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spec to Ship"
+  short_description: "Move specs into verified shippable code"
+  default_prompt: "Use $spec-to-ship to run a production-minded spec coding workflow for this change."

@@ -1,0 +1,56 @@
+name: spec-to-ship
+version: 1
+description: Spec to Ship workflow - proposal → specs → design → tasks → verify → release
+artifacts:
+  - id: proposal
+    generates: proposal.md
+    description: Problem, goals, scope, non-goals, risks, and acceptance scenarios
+    template: proposal.md
+    instruction: |
+      Create a concise proposal explaining why the change is needed and what success means.
+      Include Problem, Goal, Non-goals, Scope, Risks and Unknowns, and Acceptance Scenarios.
+    requires: []
+  - id: specs
+    generates: specs/**/*.md
+    description: Capability specifications and behavior scenarios
+    template: spec.md
+    instruction: |
+      Create testable capability specs. Use ADDED/MODIFIED/REMOVED sections when changing existing behavior.
+      Each requirement must include at least one scenario.
+    requires: [proposal]
+  - id: design
+    generates: design.md
+    description: Technical design and implementation strategy
+    template: design.md
+    instruction: |
+      Create a technical design explaining the chosen approach, alternatives, affected modules,
+      data/API/security impact, test strategy, and rollback or mitigation notes.
+    requires: [proposal, specs]
+  - id: tasks
+    generates: tasks.md
+    description: Implementation checklist with verification evidence expectations
+    template: tasks.md
+    instruction: |
+      Create small ordered checkbox tasks. Each task should include an evidence expectation.
+    requires: [design]
+  - id: verify
+    generates: verify.md
+    description: Verification report with commands, results, review findings, and residual risk
+    template: verify.md
+    instruction: |
+      Record verification evidence: changed files, commands run, test/build/lint results,
+      acceptance scenario results, review findings, skipped checks, and residual risk.
+    requires: [tasks]
+  - id: release
+    generates: release.md
+    description: Release readiness notes for merge or production delivery
+    template: release.md
+    instruction: |
+      Record release readiness: risk level, CI or local substitute, migration impact,
+      rollout plan, rollback plan, monitoring/logging, security/privacy impact, and deployment notes.
+    requires: [verify]
+apply:
+  requires: [tasks]
+  tracks: tasks.md
+  instruction: |
+    Implement tasks in order, update checkboxes, and record evidence in verify.md.
