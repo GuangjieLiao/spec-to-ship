@@ -10,6 +10,18 @@
 
 {{SOURCE_LAYOUT}}
 
+## Maven Modules
+
+{{MODULE_SUMMARY}}
+
+## 技术栈与运行入口
+
+{{RUNTIME_STACK}}
+
+{{ENTRYPOINTS}}
+
+{{RUNTIME_CONFIGS}}
+
 ## 测试结构
 
 {{TEST_LAYOUT}}
@@ -26,9 +38,19 @@
 
 {{DATA_STORES}}
 
+## 本地依赖与构建产物
+
+{{LOCAL_DEPENDENCIES}}
+
+{{BUILD_OUTPUTS}}
+
 ## 外部服务
 
 {{EXTERNAL_SERVICES}}
+
+## 项目规则
+
+{{PROJECT_RULES}}
 
 ## 更新规则
 

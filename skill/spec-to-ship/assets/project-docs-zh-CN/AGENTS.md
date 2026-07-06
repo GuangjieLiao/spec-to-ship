@@ -23,11 +23,16 @@
 {{IMPORTANT_PATHS}}
 
 - `docs/agent-map.md`：给后续 agent 阅读的项目地图。
+- `docs/domain-map.md`：业务域、模块职责和 Controller 包入口地图。
 - `docs/architecture-index.md`：架构概览和相关链接。
 - `docs/decisions/`：长期决策记录。
 - `docs/tech-debt.md`：已确认或待调查的技术债。
 - `docs/quality-score.md`：基于证据的质量记录。
 - `spec-to-ship/`：Spec to Ship 变更记录和配置。
+
+## 项目规则
+
+{{PROJECT_RULES}}
 
 ## Spec To Ship 工作流
 

@@ -27,6 +27,7 @@ for expected in \
   AGENTS.md \
   docs/agent-map.md \
   docs/architecture-index.md \
+  docs/domain-map.md \
   docs/decisions/0001-initialize-agent-docs.md \
   docs/tech-debt.md \
   docs/quality-score.md \
@@ -52,6 +53,93 @@ grep -q '## Project Summary' "$en_tmp/AGENTS.md"
 grep -q 'pnpm run dev' "$en_tmp/AGENTS.md"
 grep -q 'language: en' "$en_tmp/spec-to-ship/config.yaml"
 rm -rf "$en_tmp"
+
+maven_tmp="$(mktemp -d)"
+cat > "$maven_tmp/README.md" <<'EOF'
+# Sample Maven Project
+
+## Code Structure
+- sample-api interface contracts
+- sample-job scheduled jobs
+- sample-provider main business service
+
+## Architecture
+- Framework: Spring Boot
+- Persistence: MyBatisPlus
+- Config center: Apollo
+- Database: MySQL
+- Cache: Redis
+- MQ: ActiveMQ
+
+## Development Rules
+- Public APIs must use /sample/open-api prefix.
+EOF
+cat > "$maven_tmp/pom.xml" <<'XML'
+<project>
+  <modules>
+    <module>sample-api</module>
+    <module>sample-job</module>
+    <module>sample-provider</module>
+    <module>sample-dependency</module>
+  </modules>
+</project>
+XML
+mkdir -p "$maven_tmp/sample-api/src/main" "$maven_tmp/sample-api/target"
+mkdir -p "$maven_tmp/sample-job/src/main" "$maven_tmp/sample-job/src/test"
+mkdir -p "$maven_tmp/sample-provider/src/main/java/com/acme/sample" "$maven_tmp/sample-provider/src/main/resources"
+mkdir -p "$maven_tmp/sample-provider/src/main/java/com/acme/sample/controller/invoice" "$maven_tmp/sample-provider/src/main/java/com/acme/sample/controller/rebate"
+mkdir -p "$maven_tmp/sample-dependency/lib-sample-repo"
+touch "$maven_tmp/sample-api/pom.xml" "$maven_tmp/sample-job/pom.xml" "$maven_tmp/sample-provider/pom.xml" "$maven_tmp/sample-dependency/pom.xml"
+touch "$maven_tmp/sample-dependency/lib-sample-repo/local.jar"
+cat > "$maven_tmp/sample-provider/src/main/java/com/acme/sample/SampleApplication.java" <<'JAVA'
+package com.acme.sample;
+
+@SpringBootApplication
+public class SampleApplication {}
+JAVA
+cat > "$maven_tmp/sample-provider/src/main/java/com/acme/sample/controller/invoice/InvoiceController.java" <<'JAVA'
+package com.acme.sample.controller.invoice;
+
+@RestController
+public class InvoiceController {}
+JAVA
+cat > "$maven_tmp/sample-provider/src/main/java/com/acme/sample/controller/rebate/RebateController.java" <<'JAVA'
+package com.acme.sample.controller.rebate;
+
+@RestController
+public class RebateController {}
+JAVA
+touch "$maven_tmp/sample-provider/src/main/resources/application.yml" "$maven_tmp/sample-provider/src/main/resources/application-dev.yml"
+bash "$skill_dir/scripts/spec-to-ship-init.sh" "$maven_tmp" >/dev/null
+grep -q 'sample-api' "$maven_tmp/docs/agent-map.md"
+grep -q 'sample-job/src/test' "$maven_tmp/docs/agent-map.md"
+grep -q 'local.jar' "$maven_tmp/docs/agent-map.md"
+grep -q 'sample-api/target' "$maven_tmp/docs/quality-score.md"
+grep -q 'README 标题' "$maven_tmp/AGENTS.md"
+grep -q 'Spring Boot' "$maven_tmp/docs/architecture-index.md"
+grep -q 'MySQL' "$maven_tmp/docs/agent-map.md"
+grep -q 'Redis' "$maven_tmp/docs/agent-map.md"
+grep -q 'ActiveMQ' "$maven_tmp/docs/agent-map.md"
+grep -q 'Apollo' "$maven_tmp/docs/agent-map.md"
+grep -q 'sample-job.*scheduled jobs' "$maven_tmp/docs/agent-map.md"
+grep -q 'SampleApplication.java' "$maven_tmp/docs/agent-map.md"
+grep -q 'application-dev.yml' "$maven_tmp/docs/agent-map.md"
+grep -q 'sample-provider/src/main/resources.*application-dev.yml' "$maven_tmp/docs/agent-map.md"
+if grep -q 'sample-provider/src/main/resources/application-dev.yml' "$maven_tmp/docs/agent-map.md"; then
+  echo "ERROR: runtime configs should be grouped, not listed as one line per file" >&2
+  exit 1
+fi
+grep -q 'controller/invoice' "$maven_tmp/docs/domain-map.md"
+grep -q 'controller/rebate' "$maven_tmp/docs/domain-map.md"
+grep -q 'domain_map: docs/domain-map.md' "$maven_tmp/spec-to-ship/config.yaml"
+grep -q '运行命令/profile 待确认' "$maven_tmp/docs/tech-debt.md"
+if grep -q '确认项目类型、命令、测试和架构' "$maven_tmp/docs/tech-debt.md"; then
+  echo "ERROR: tech debt investigation item should not stay generic after project facts were detected" >&2
+  exit 1
+fi
+grep -q '/sample/open-api' "$maven_tmp/AGENTS.md"
+rm -rf "$maven_tmp"
+
 printf 'custom\n' > "$init_tmp/AGENTS.md"
 bash "$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
 if [ "$(cat "$init_tmp/AGENTS.md")" != "custom" ]; then

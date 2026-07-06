@@ -83,6 +83,7 @@ The init script creates missing files only:
 ```text
 AGENTS.md
 docs/agent-map.md
+docs/domain-map.md
 docs/architecture-index.md
 docs/decisions/0001-initialize-agent-docs.md
 docs/tech-debt.md

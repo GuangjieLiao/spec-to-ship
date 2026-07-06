@@ -12,6 +12,7 @@ agent_docs:
   files:
     guide: AGENTS.md
     map: docs/agent-map.md
+    domain_map: docs/domain-map.md
     architecture_index: docs/architecture-index.md
     tech_debt: docs/tech-debt.md
     quality_score: docs/quality-score.md

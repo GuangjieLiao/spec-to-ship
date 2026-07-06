@@ -10,6 +10,18 @@ Generated: {{GENERATED_AT}}
 
 {{SOURCE_LAYOUT}}
 
+## Maven Modules
+
+{{MODULE_SUMMARY}}
+
+## Runtime Stack And Entry Points
+
+{{RUNTIME_STACK}}
+
+{{ENTRYPOINTS}}
+
+{{RUNTIME_CONFIGS}}
+
 ## Test Layout
 
 {{TEST_LAYOUT}}
@@ -26,9 +38,19 @@ Generated: {{GENERATED_AT}}
 
 {{DATA_STORES}}
 
+## Local Dependencies And Build Outputs
+
+{{LOCAL_DEPENDENCIES}}
+
+{{BUILD_OUTPUTS}}
+
 ## External Services
 
 {{EXTERNAL_SERVICES}}
+
+## Project Rules
+
+{{PROJECT_RULES}}
 
 ## Update Rule
 

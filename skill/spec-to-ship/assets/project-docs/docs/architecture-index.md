@@ -4,6 +4,10 @@
 
 {{ARCHITECTURE_OVERVIEW}}
 
+## Runtime Stack And Runtime Clues
+
+{{ARCHITECTURE_RUNTIME}}
+
 ## Boundaries
 
 {{ARCHITECTURE_BOUNDARIES}}
@@ -14,10 +18,7 @@ See `docs/decisions/`.
 
 ## Known Unknowns
 
-- Runtime stack.
-- Module boundaries.
-- Deployment model.
-- Data ownership.
+{{KNOWN_UNKNOWNS}}
 
 ## Update Rule
 

@@ -4,6 +4,10 @@
 
 {{ARCHITECTURE_OVERVIEW}}
 
+## 技术栈与运行时线索
+
+{{ARCHITECTURE_RUNTIME}}
+
 ## 边界
 
 {{ARCHITECTURE_BOUNDARIES}}
@@ -14,10 +18,7 @@
 
 ## 已知未知项
 
-- 运行时技术栈。
-- 模块边界。
-- 部署模型。
-- 数据所有权。
+{{KNOWN_UNKNOWNS}}
 
 ## 更新规则
 

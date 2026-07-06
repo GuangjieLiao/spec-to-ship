@@ -23,11 +23,16 @@ Project: {{PROJECT_NAME}}
 {{IMPORTANT_PATHS}}
 
 - `docs/agent-map.md`: project map for future agents.
+- `docs/domain-map.md`: domain, module responsibility, and controller package map.
 - `docs/architecture-index.md`: architecture overview and links.
 - `docs/decisions/`: durable decisions.
 - `docs/tech-debt.md`: known and suspected debt.
 - `docs/quality-score.md`: evidence-based quality notes.
 - `spec-to-ship/`: Spec to Ship change artifacts and configuration.
+
+## Project Rules
+
+{{PROJECT_RULES}}
 
 ## Spec To Ship Workflow
 
