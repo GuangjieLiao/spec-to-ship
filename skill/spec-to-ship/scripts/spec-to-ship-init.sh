@@ -209,7 +209,7 @@ append_readme_fact() {
   local var_name="$1"
   local label="$2"
   if [ "$lang" = "zh-CN" ]; then
-    append_unique_line "$var_name" "- $label（来源：\`$(basename "$readme_file")\`）。"
+    append_unique_line "$var_name" "- ${label}（来源：\`$(basename "$readme_file")\`）。"
   else
     append_unique_line "$var_name" "- $label (source: \`$(basename "$readme_file")\`)."
   fi
@@ -331,7 +331,7 @@ scan_maven_modules() {
     role="$(readme_module_role "$module")"
     if [ -n "$role" ]; then
       if [ "$lang" = "zh-CN" ]; then
-        note="$note；README 说明：$role"
+        note="${note}；README 说明：$role"
       else
         note="$note; README: $role"
       fi
