@@ -62,6 +62,8 @@ Use this when the user says `$spec-to-ship init`, "initialize agent docs", "ÂàùÂ
 
 Goal: create long-lived project-level docs without generating application source code.
 
+The init flow should scan the target project first and record only facts supported by files in the repository. It may infer common commands and structure from files such as `package.json`, lockfiles, `pyproject.toml`, `go.mod`, `Cargo.toml`, `pom.xml`, `src/`, `tests/`, `.github/workflows/`, `Dockerfile`, and `docker-compose.yml`.
+
 Run:
 
 ```bash
@@ -80,7 +82,7 @@ docs/quality-score.md
 spec-to-ship/config.yaml
 ```
 
-For existing projects, preserve existing files by default. Use `--force` only when the user explicitly asks to overwrite.
+For existing projects, preserve existing files by default. Use `--force` only when the user explicitly asks to overwrite. If files are created, they should include scanned facts where available.
 
 For blank projects, keep placeholders honest. Do not invent source layout, commands, architecture, tests, deployment, or quality scores. Future Spec to Ship changes should replace placeholders with observed facts.
 

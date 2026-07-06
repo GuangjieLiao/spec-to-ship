@@ -2,35 +2,28 @@
 
 ## Summary
 
-Initial baseline. Scores should be evidence-based and updated as the project gains source code, tests, CI, and release practices.
+{{QUALITY_SUMMARY}}
 
 ## Build And Test
 
-- Status: unknown.
-- Evidence: no commands established yet.
+{{QUALITY_BUILD_TEST}}
 
 ## Documentation
 
-- Status: initialized.
-- Evidence: project agent docs were created by `$spec-to-ship init`.
+{{QUALITY_DOCUMENTATION}}
 
 ## Architecture Clarity
 
-- Status: unknown.
-- Evidence: no architecture has been confirmed yet.
+{{QUALITY_ARCHITECTURE}}
 
 ## Release Readiness
 
-- Status: unknown.
-- Evidence: no release process has been confirmed yet.
+{{QUALITY_RELEASE}}
 
 ## Agent Readability
 
-- Status: initialized.
-- Evidence: `AGENTS.md`, `docs/agent-map.md`, and related docs exist.
+{{QUALITY_AGENT_READABILITY}}
 
 ## Current Gaps
 
-- Confirm run, test, build, and verification commands.
-- Replace blank-project placeholders with observed facts.
-
+{{QUALITY_GAPS}}

@@ -4,21 +4,23 @@
 
 Project: {{PROJECT_NAME}}
 
-Current state: Initialized for agent-assisted development. If this is a blank project, update this section after the first implementation change.
+{{PROJECT_SUMMARY}}
 
 ## How To Run
 
-No run command has been confirmed yet.
+{{RUN_COMMANDS}}
 
 ## How To Test
 
-No test command has been confirmed yet.
+{{TEST_COMMANDS}}
 
 ## How To Build
 
-No build command has been confirmed yet.
+{{BUILD_COMMANDS}}
 
 ## Important Paths
+
+{{IMPORTANT_PATHS}}
 
 - `docs/agent-map.md`: project map for future agents.
 - `docs/architecture-index.md`: architecture overview and links.
@@ -36,4 +38,3 @@ Every change must check whether these project docs need updates before verificat
 ## Human Gates
 
 Ask before making irreversible changes, deleting data, changing production behavior, or accepting unverified security/privacy risk.
-

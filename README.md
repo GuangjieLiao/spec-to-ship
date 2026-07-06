@@ -86,7 +86,7 @@ docs/quality-score.md
 spec-to-ship/config.yaml
 ```
 
-For blank projects, these files contain honest placeholders and update rules. Later `$spec-to-ship` changes should keep them current when project structure, commands, tests, architecture, deployment, or known debt changes.
+Init scans the target project and records facts it can infer from files such as `package.json`, lockfiles, `pyproject.toml`, `go.mod`, `Cargo.toml`, common source/test directories, `.github/workflows/`, and Docker files. For blank projects, these files contain honest placeholders and update rules. Later `$spec-to-ship` changes should keep them current when project structure, commands, tests, architecture, deployment, or known debt changes.
 
 In your target project, ask Codex:
 

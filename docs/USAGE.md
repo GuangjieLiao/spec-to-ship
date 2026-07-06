@@ -41,7 +41,7 @@ For a new or existing project, first initialize project-level agent docs:
 $spec-to-ship init
 ```
 
-The init flow creates missing files only and preserves existing docs by default:
+The init flow scans the target project, creates missing files only, and preserves existing docs by default:
 
 ```text
 AGENTS.md
@@ -53,7 +53,7 @@ docs/quality-score.md
 spec-to-ship/config.yaml
 ```
 
-For blank projects, the generated files intentionally use placeholders such as "No run command has been confirmed yet." Do not treat those placeholders as final architecture. Future Spec to Ship changes should replace them with observed facts.
+For existing projects, it records facts it can infer from files such as `package.json`, lockfiles, `pyproject.toml`, `go.mod`, `Cargo.toml`, common source/test directories, `.github/workflows/`, and Docker files. For blank projects, the generated files intentionally use placeholders such as "No run command has been confirmed yet." Do not treat those placeholders as final architecture. Future Spec to Ship changes should replace them with observed facts.
 
 In any project, ask:
 

@@ -2,14 +2,11 @@
 
 ## Overview
 
-Architecture has not been established yet. If this is an existing project, replace this section with a concise map of known modules and links to existing architecture docs.
+{{ARCHITECTURE_OVERVIEW}}
 
 ## Boundaries
 
-- Frontend: not identified.
-- Backend: not identified.
-- Data layer: not identified.
-- External integrations: not identified.
+{{ARCHITECTURE_BOUNDARIES}}
 
 ## Key Decisions
 
@@ -25,4 +22,3 @@ See `docs/decisions/`.
 ## Update Rule
 
 Update this file when a change introduces or changes module boundaries, data flow, infrastructure, major dependencies, or architectural decisions.
-

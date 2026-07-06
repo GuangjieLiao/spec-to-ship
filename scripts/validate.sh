@@ -17,6 +17,11 @@ bash "$skill_dir/scripts/spec-to-ship-policy-lint.sh"
 
 echo "Running init workflow smoke test..."
 init_tmp="$(mktemp -d)"
+mkdir -p "$init_tmp/src" "$init_tmp/tests" "$init_tmp/.github/workflows"
+cat > "$init_tmp/package.json" <<'JSON'
+{"scripts":{"dev":"vite","build":"vite build","test":"vitest","lint":"eslint ."}}
+JSON
+touch "$init_tmp/pnpm-lock.yaml" "$init_tmp/.github/workflows/ci.yml"
 bash "$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
 for expected in \
   AGENTS.md \
@@ -32,6 +37,10 @@ do
     exit 1
   fi
 done
+grep -q 'pnpm run dev' "$init_tmp/AGENTS.md"
+grep -q 'pnpm test' "$init_tmp/docs/agent-map.md"
+grep -q 'src/' "$init_tmp/docs/agent-map.md"
+grep -q '.github/workflows' "$init_tmp/docs/agent-map.md"
 printf 'custom\n' > "$init_tmp/AGENTS.md"
 bash "$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
 if [ "$(cat "$init_tmp/AGENTS.md")" != "custom" ]; then
