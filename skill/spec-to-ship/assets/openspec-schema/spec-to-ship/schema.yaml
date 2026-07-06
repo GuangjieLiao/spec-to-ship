@@ -1,13 +1,13 @@
 name: spec-to-ship
 version: 1
-description: Spec to Ship workflow - init → proposal → specs → prototype → design → tasks → verify → release
+description: Spec to Ship workflow - init → proposal → specs → prototype → design → tasks → verify → release. Default artifact prose is Chinese unless English is explicitly requested.
 artifacts:
   - id: agent-guide
     generates: AGENTS.md
     description: Project-level guide for future agents
     template: agent-guide.md
     instruction: |
-      Create or maintain the concise project guide for agents. Include project summary,
+      Use Chinese prose unless English is explicitly requested. Create or maintain the concise project guide for agents. Include project summary,
       run/test/build commands when known, important paths, Spec to Ship workflow notes,
       and human gates. Preserve existing project-specific instructions.
     requires: []
@@ -16,7 +16,7 @@ artifacts:
     description: Project map for source layout, commands, tests, CI/CD, data stores, and services
     template: agent-map.md
     instruction: |
-      Create or maintain the project map. For blank projects, use honest placeholders.
+      Use Chinese prose unless English is explicitly requested. Create or maintain the project map. For blank projects, use honest placeholders.
       For existing projects, record only observed repository facts.
     requires: []
   - id: architecture-index
@@ -24,7 +24,7 @@ artifacts:
     description: Project architecture overview and links to decisions
     template: architecture-index.md
     instruction: |
-      Create or maintain the architecture index. Do not invent architecture for blank projects.
+      Use Chinese prose unless English is explicitly requested. Create or maintain the architecture index. Do not invent architecture for blank projects.
       Link to decision records when meaningful.
     requires: []
   - id: agent-doc-maintenance
@@ -32,7 +32,7 @@ artifacts:
     description: Evidence-based agent readability and quality baseline
     template: quality-score.md
     instruction: |
-      Record evidence-based quality notes. Future changes must update project agent docs
+      Use Chinese prose unless English is explicitly requested. Record evidence-based quality notes. Future changes must update project agent docs
       or explain why no update was needed.
     requires: []
   - id: proposal
@@ -40,7 +40,7 @@ artifacts:
     description: Problem, goals, scope, non-goals, risks, and acceptance scenarios
     template: proposal.md
     instruction: |
-      Create a concise proposal explaining why the change is needed and what success means.
+      Use Chinese prose unless English is explicitly requested. Create a concise proposal explaining why the change is needed and what success means.
       Include Problem, Goal, Non-goals, Scope, Risks and Unknowns, and Acceptance Scenarios.
     requires: []
   - id: specs
@@ -48,7 +48,7 @@ artifacts:
     description: Capability specifications and behavior scenarios
     template: spec.md
     instruction: |
-      Create testable capability specs. Use ADDED/MODIFIED/REMOVED sections when changing existing behavior.
+      Use Chinese prose unless English is explicitly requested. Create testable capability specs. Use ADDED/MODIFIED/REMOVED sections when changing existing behavior.
       Each requirement must include at least one scenario.
     requires: [proposal]
   - id: design
@@ -56,7 +56,7 @@ artifacts:
     description: Technical design and implementation strategy
     template: design.md
     instruction: |
-      Create a technical design explaining the chosen approach, alternatives, affected modules,
+      Use Chinese prose unless English is explicitly requested. Create a technical design explaining the chosen approach, alternatives, affected modules,
       data/API/security impact, test strategy, and rollback or mitigation notes.
     requires: [proposal, specs]
   - id: prototype
@@ -64,7 +64,7 @@ artifacts:
     description: Prototype source, visual inventory, fidelity requirements, and accepted deviations
     template: prototype.md
     instruction: |
-      Create this artifact when the change is driven by a screenshot, Figma frame, HTML prototype,
+      Use Chinese prose unless English is explicitly requested. Create this artifact when the change is driven by a screenshot, Figma frame, HTML prototype,
       visual mockup, or product reference. Record source, viewports, visible text, layout hierarchy,
       assets, interactions, responsive behavior, and fidelity risks. If no prototype applies, mark N/A.
     requires: [proposal]
@@ -73,14 +73,14 @@ artifacts:
     description: Implementation checklist with verification evidence expectations
     template: tasks.md
     instruction: |
-      Create small ordered checkbox tasks. Each task should include an evidence expectation.
+      Use Chinese prose unless English is explicitly requested. Create small ordered checkbox tasks. Each task should include an evidence expectation.
     requires: [design]
   - id: verify
     generates: verify.md
     description: Verification report with commands, results, review findings, and residual risk
     template: verify.md
     instruction: |
-      Record verification evidence: changed files, commands run, test/build/lint results,
+      Use Chinese prose unless English is explicitly requested. Record verification evidence: changed files, commands run, test/build/lint results,
       acceptance scenario results, review findings, skipped checks, and residual risk.
     requires: [tasks]
   - id: release
@@ -88,11 +88,11 @@ artifacts:
     description: Release readiness notes for merge or production delivery
     template: release.md
     instruction: |
-      Record release readiness: risk level, CI or local substitute, migration impact,
+      Use Chinese prose unless English is explicitly requested. Record release readiness: risk level, CI or local substitute, migration impact,
       rollout plan, rollback plan, monitoring/logging, security/privacy impact, and deployment notes.
     requires: [verify]
 apply:
   requires: [tasks]
   tracks: tasks.md
   instruction: |
-    Implement tasks in order, update checkboxes, and record evidence in verify.md.
+    Use Chinese prose unless English is explicitly requested. Implement tasks in order, update checkboxes, and record evidence in verify.md.

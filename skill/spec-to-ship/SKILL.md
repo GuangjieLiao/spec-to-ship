@@ -19,6 +19,12 @@ This first version is intentionally runnable before team standards are finalized
 
 Do not ask the user to understand schema or workflow internals before using the skill. Route the request, create the artifacts, and explain only the next decision point.
 
+## Artifact Language Policy
+
+Default all prose in generated artifacts to Chinese (`zh-CN`) unless the user explicitly asks for English. Keep stable filenames, change names, code identifiers, commands, paths, schema keys, and machine-readable enum values in English.
+
+This applies to project docs, OpenSpec/fallback change artifacts, Superpowers plans under `docs/superpowers/plans/`, checkpoints, verification notes, release notes, and summaries. When invoking Superpowers planning or execution skills from this workflow, explicitly request Chinese body text while preserving code blocks and command text as-is.
+
 ## Stage Flow
 
 ```text

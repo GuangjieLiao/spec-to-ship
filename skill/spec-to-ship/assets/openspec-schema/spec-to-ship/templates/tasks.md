@@ -1,7 +1,7 @@
-# Tasks
+# 任务
 
-## 1. Implementation
+## 1. 实现
 
 - [ ] 1.1 <task>
-  - Evidence: <test/build/manual check>
+  - 证据：<测试/构建/人工检查>
 

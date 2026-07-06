@@ -1,11 +1,11 @@
-# Spec
+# 规格
 
-## ADDED Requirements
+## ADDED 需求
 
-### Requirement: <capability>
-The system SHALL <observable behavior>.
+### 需求：<能力>
+系统 SHALL <可观察行为>。
 
-#### Scenario: <name>
-- **WHEN** <action>
-- **THEN** <observable result>
+#### 场景：<名称>
+- **WHEN** <动作>
+- **THEN** <可观察结果>
 

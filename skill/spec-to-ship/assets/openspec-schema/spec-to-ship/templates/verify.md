@@ -1,14 +1,14 @@
-# Verification
+# 验证
 
-## Changed Files
+## 变更文件
 
-## Commands Run
+## 执行命令
 
-## Acceptance Scenario Results
+## 验收场景结果
 
-## Review Findings
+## 评审发现
 
-## Skipped Checks
+## 跳过的检查
 
-## Residual Risk
+## 剩余风险
 

@@ -1,18 +1,18 @@
-# Release Readiness
+# 发布准备
 
-## Risk Level
+## 风险等级
 
-## CI or Local Substitute
+## CI 或本地替代检查
 
-## Migration Impact
+## 迁移影响
 
-## Feature Flag or Rollout Plan
+## 功能开关或发布计划
 
-## Rollback Plan
+## 回滚计划
 
-## Monitoring and Logging
+## 监控与日志
 
-## Security and Privacy Impact
+## 安全与隐私影响
 
-## Deployment Notes
+## 部署说明
 

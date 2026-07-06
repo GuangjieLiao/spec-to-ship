@@ -1,19 +1,19 @@
-# Prototype
+# 原型
 
-## Source
+## 来源
 
-## Target Viewports
+## 目标视口
 
-## Visible Text Inventory
+## 可见文本清单
 
-## Layout and Component Inventory
+## 布局与组件清单
 
-## Assets
+## 资源
 
-## Interaction States
+## 交互状态
 
-## Responsive Behavior
+## 响应式行为
 
-## Accepted Deviations
+## 已接受偏差
 
-## Fidelity Risks
+## 还原风险

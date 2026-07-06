@@ -11,6 +11,12 @@ bash -n "$repo_root"/scripts/*.sh
 echo "Checking skill frontmatter..."
 grep -q '^name: spec-to-ship$' "$skill_dir/SKILL.md"
 grep -q '^description:' "$skill_dir/SKILL.md"
+grep -q 'Default all prose in generated artifacts to Chinese' "$skill_dir/SKILL.md"
+grep -q '^# 变更提案$' "$skill_dir/assets/proposal-template.md"
+grep -q '^# 技术设计$' "$skill_dir/assets/design-template.md"
+grep -q '^# 任务$' "$skill_dir/assets/tasks-template.md"
+grep -q '^# 验证$' "$skill_dir/assets/verify-template.md"
+grep -q '^# 发布准备$' "$skill_dir/assets/release-template.md"
 
 echo "Checking policy pack index..."
 bash "$skill_dir/scripts/spec-to-ship-policy-lint.sh"
@@ -153,6 +159,11 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 change="$tmp/spec-to-ship/changes/sample-change"
 "$skill_dir/scripts/spec-to-ship-state.sh" init "$change" normal >/dev/null
+grep -q '^# 变更提案$' "$change/proposal.md"
+grep -q '^# 技术设计$' "$change/design.md"
+grep -q '^# 任务$' "$change/tasks.md"
+grep -q '^# 验证$' "$change/verify.md"
+grep -q '^# 发布准备$' "$change/release.md"
 if [ -e "$change/prototype.md" ]; then
   echo "ERROR: normal mode should not create prototype.md by default" >&2
   exit 1
@@ -164,6 +175,7 @@ if [ ! -s "$prototype_change/prototype.md" ]; then
   echo "ERROR: prototype mode should create prototype.md" >&2
   exit 1
 fi
+grep -q '^# 原型$' "$prototype_change/prototype.md"
 
 if "$skill_dir/scripts/spec-to-ship-state.sh" set "$change" phase build >/tmp/spec-to-ship-direct-phase.out 2>&1; then
   echo "ERROR: direct phase mutation should be blocked" >&2

@@ -1,5 +1,5 @@
-# Tasks
+# 任务
 
 - [ ] <task>
-  - Evidence: <test/build/manual check>
+  - 证据：<测试/构建/人工检查>
 

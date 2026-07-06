@@ -1,14 +1,14 @@
-# Proposal
+# 变更提案
 
-## Problem
+## 问题
 
-## Goal
+## 目标
 
-## Non-goals
+## 非目标
 
-## Scope
+## 范围
 
-## Risks and Unknowns
+## 风险与未知项
 
-## Acceptance Scenarios
+## 验收场景
 

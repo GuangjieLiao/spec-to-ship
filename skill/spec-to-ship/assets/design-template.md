@@ -1,14 +1,14 @@
-# Design
+# 技术设计
 
-## Chosen Approach
+## 选定方案
 
-## Alternatives Considered
+## 备选方案
 
-## Module and File Impact
+## 模块与文件影响
 
-## Data/API/Security Impact
+## 数据/API/安全影响
 
-## Test Strategy
+## 测试策略
 
-## Rollback or Mitigation Notes
+## 回滚或缓解措施
 

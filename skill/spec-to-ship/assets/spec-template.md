@@ -1,13 +1,13 @@
-# Spec
+# 规格
 
-## Requirements
+## 需求
 
-### Requirement: <capability>
+### 需求：<能力>
 
-The system shall <observable behavior>.
+系统应当 <可观察行为>。
 
-#### Scenario: <name>
-- Given <state>
-- When <action>
-- Then <observable result>
+#### 场景：<名称>
+- 前置条件：<状态>
+- 当：<动作>
+- 则：<可观察结果>
 
