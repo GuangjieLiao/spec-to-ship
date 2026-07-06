@@ -70,6 +70,24 @@ Design choice: state transitions live in a script, not only prompt text.
 
 Benefit: agents cannot casually jump from `open` to `build`; drift becomes detectable.
 
+### `scripts/spec-to-ship-init.sh`
+
+Initializes project-level agent docs in a target repository from bundled templates:
+
+```text
+AGENTS.md
+docs/agent-map.md
+docs/architecture-index.md
+docs/decisions/0001-initialize-agent-docs.md
+docs/tech-debt.md
+docs/quality-score.md
+spec-to-ship/config.yaml
+```
+
+Design choice: init creates missing files only and does not overwrite existing project docs unless `--force` is explicitly used.
+
+Benefit: blank projects get an honest documentation skeleton, and existing projects can adopt Spec to Ship without losing local guidance.
+
 ### `scripts/spec-to-ship-guard.sh`
 
 Checks whether a stage can be exited.
@@ -156,6 +174,7 @@ Benefit: teams can trial the workflow without committing to OpenSpec schema cust
 
 ```text
 User request
+  -> optional project init
   -> open artifacts
   -> policy pack selection
   -> prototype artifact when visual reference exists

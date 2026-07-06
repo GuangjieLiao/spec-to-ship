@@ -45,9 +45,50 @@ bash scripts/install.sh
 $spec-to-ship
 ```
 
+如果本机已经安装过旧版，更新方式是进入这个仓库后执行：
+
+```bash
+git pull
+bash scripts/install.sh
+```
+
+Windows PowerShell 里如果不能直接使用 `bash`，可以使用 Git Bash 的完整路径：
+
+```powershell
+& 'C:\Program Files\Git\bin\bash.exe' scripts/install.sh
+```
+
+安装脚本会用当前仓库里的版本覆盖：
+
+```text
+~/.codex/skills/spec-to-ship
+```
+
+更新后需要重启或刷新 Codex，才能稳定识别新版 `$spec-to-ship`。
+
 ## 3. 在新项目里怎么用
 
-进入你的项目目录，直接对 Codex 说：
+第一次在项目里使用时，建议先初始化项目级 agent 文档：
+
+```text
+$spec-to-ship init
+```
+
+它会在目标项目里创建缺失文件，默认不会覆盖已有文件：
+
+```text
+AGENTS.md
+docs/agent-map.md
+docs/architecture-index.md
+docs/decisions/0001-initialize-agent-docs.md
+docs/tech-debt.md
+docs/quality-score.md
+spec-to-ship/config.yaml
+```
+
+如果是空项目，这些文件会使用诚实的占位内容，例如“暂未确认运行命令”。不要把这些占位当成最终架构。后续每次 `$spec-to-ship` 开发时，如果新增或改变了目录结构、运行命令、测试、CI、部署、架构或技术债，就应该同步更新这些项目级文档。
+
+进入你的项目目录后，直接对 Codex 说：
 
 ```text
 Use $spec-to-ship for this change: 增加管理员报表 CSV 导出能力
@@ -57,6 +98,15 @@ Use $spec-to-ship for this change: 增加管理员报表 CSV 导出能力
 
 ```text
 使用 $spec-to-ship 来处理这个需求：修复用户登录后偶发跳回登录页的问题
+```
+
+如果需要更严格或更具体的规则，可以直接点名 policy pack：
+
+```text
+Use $spec-to-ship with strict-team policy for this change: 增加管理员报表 CSV 导出能力
+Use $spec-to-ship with backend-api policy for this change: 增加管理员报表 CSV 导出接口
+Use $spec-to-ship with database-change policy for this change: 为报表导出增加索引
+Use $spec-to-ship with security-sensitive policy for this change: 限制报表导出权限
 ```
 
 Spec to Ship 会先判断项目是否已经使用 OpenSpec：
@@ -180,6 +230,7 @@ prototype.md
 - 测试/构建/lint 结果是什么？
 - 验收场景是否通过？
 - 代码审查发现了什么？
+- 项目级 agent 文档是否需要更新？如果需要，更新了哪些；如果不需要，说明原因。
 - 有哪些跳过项和剩余风险？
 
 如果验证失败，不能直接继续归档。需要回到 build 修复，或者对非关键风险做明确记录。

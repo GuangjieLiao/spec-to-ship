@@ -1,7 +1,40 @@
 name: spec-to-ship
 version: 1
-description: Spec to Ship workflow - proposal → specs → prototype → design → tasks → verify → release
+description: Spec to Ship workflow - init → proposal → specs → prototype → design → tasks → verify → release
 artifacts:
+  - id: agent-guide
+    generates: AGENTS.md
+    description: Project-level guide for future agents
+    template: agent-guide.md
+    instruction: |
+      Create or maintain the concise project guide for agents. Include project summary,
+      run/test/build commands when known, important paths, Spec to Ship workflow notes,
+      and human gates. Preserve existing project-specific instructions.
+    requires: []
+  - id: agent-map
+    generates: docs/agent-map.md
+    description: Project map for source layout, commands, tests, CI/CD, data stores, and services
+    template: agent-map.md
+    instruction: |
+      Create or maintain the project map. For blank projects, use honest placeholders.
+      For existing projects, record only observed repository facts.
+    requires: []
+  - id: architecture-index
+    generates: docs/architecture-index.md
+    description: Project architecture overview and links to decisions
+    template: architecture-index.md
+    instruction: |
+      Create or maintain the architecture index. Do not invent architecture for blank projects.
+      Link to decision records when meaningful.
+    requires: []
+  - id: agent-doc-maintenance
+    generates: docs/quality-score.md
+    description: Evidence-based agent readability and quality baseline
+    template: quality-score.md
+    instruction: |
+      Record evidence-based quality notes. Future changes must update project agent docs
+      or explain why no update was needed.
+    requires: []
   - id: proposal
     generates: proposal.md
     description: Problem, goals, scope, non-goals, risks, and acceptance scenarios

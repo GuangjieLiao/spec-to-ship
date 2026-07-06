@@ -57,7 +57,23 @@ Spec to Ship keeps the core workflow general and adds optional policy packs:
 
 Benefit: new users can start lightly, while real teams can layer stricter rules without forking the skill or bloating `SKILL.md`.
 
-## 5. Make Context Loss A Normal Case
+## 5. Initialize Project Knowledge Before Change Work
+
+Per-change artifacts are not enough for long-lived projects. Future agents also need stable project-level entry points: how to run the project, where code lives, what architecture is known, and what debt has been observed.
+
+Spec to Ship adds `$spec-to-ship init` to create:
+
+- `AGENTS.md`
+- `docs/agent-map.md`
+- `docs/architecture-index.md`
+- `docs/decisions/`
+- `docs/tech-debt.md`
+- `docs/quality-score.md`
+- `spec-to-ship/config.yaml`
+
+Benefit: blank projects start with a maintenance contract instead of invented architecture, and existing projects get a safe adoption path that preserves current docs.
+
+## 6. Make Context Loss A Normal Case
 
 Long AI coding tasks often hit context pressure. Spec to Ship treats that as expected.
 
@@ -70,7 +86,7 @@ Mechanisms:
 
 Benefit: the agent can recover from files, not memory.
 
-## 6. Use Scripts For Mechanical Rules
+## 7. Use Scripts For Mechanical Rules
 
 The agent still makes engineering judgments, but mechanical rules belong in scripts:
 
@@ -83,7 +99,7 @@ The agent still makes engineering judgments, but mechanical rules belong in scri
 
 Benefit: deterministic checks are easier to trust and improve.
 
-## 7. Keep Schema Optional
+## 8. Keep Schema Optional
 
 OpenSpec schema is useful, but forcing it too early makes adoption harder.
 
@@ -94,7 +110,7 @@ Spec to Ship supports both:
 
 Benefit: teams can start using the workflow immediately and formalize schema later.
 
-## 8. Optimize For Reviewable Work
+## 9. Optimize For Reviewable Work
 
 The workflow is not just about producing code. It is about producing code that another engineer can review.
 

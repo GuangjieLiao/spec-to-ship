@@ -9,13 +9,14 @@
 - Optional OpenSpec schema.
 - Production readiness checklist.
 - Indexed policy packs for default, strict-team, frontend, backend API, database, and security-sensitive flows.
+- `$spec-to-ship init` for project-level agent docs and configuration.
 
 ## v0.2
 
 - Add richer examples for frontend, backend, API, database, and hotfix flows.
 - Add integration tests for OpenSpec-backed projects.
 - Improve schema compatibility across OpenSpec versions.
-- Add project-level configuration file for default mode, review mode, release policy, and default policy packs.
+- Expand project-level configuration for default mode, review mode, release policy, and default policy packs.
 
 ## v0.3
 

@@ -33,7 +33,7 @@ scripts/                   # Repository helper scripts
 .github/                   # CI and contribution templates
 ```
 
-## Quick Install
+## Install Or Update
 
 From a clone of this repository:
 
@@ -53,12 +53,54 @@ Then start a new Codex session or reload skills, and invoke:
 $spec-to-ship
 ```
 
+To update an existing local installation, pull the latest repository changes and rerun the same installer:
+
+```bash
+git pull
+bash scripts/install.sh
+```
+
+On Windows PowerShell, if `bash` is not on `PATH`, use Git Bash directly:
+
+```powershell
+& 'C:\Program Files\Git\bin\bash.exe' scripts/install.sh
+```
+
 ## Use In A New Project
+
+Before the first change, initialize project-level agent docs:
+
+```text
+$spec-to-ship init
+```
+
+This creates missing project docs in the target project:
+
+```text
+AGENTS.md
+docs/agent-map.md
+docs/architecture-index.md
+docs/decisions/0001-initialize-agent-docs.md
+docs/tech-debt.md
+docs/quality-score.md
+spec-to-ship/config.yaml
+```
+
+For blank projects, these files contain honest placeholders and update rules. Later `$spec-to-ship` changes should keep them current when project structure, commands, tests, architecture, deployment, or known debt changes.
 
 In your target project, ask Codex:
 
 ```text
 Use $spec-to-ship for this change: <describe the feature, bug fix, or refactor>
+```
+
+For stricter or domain-specific work, name the policy pack:
+
+```text
+Use $spec-to-ship with strict-team policy for this change: <describe the change>
+Use $spec-to-ship with backend-api policy for this change: <describe the API change>
+Use $spec-to-ship with database-change policy for this change: <describe the migration>
+Use $spec-to-ship with security-sensitive policy for this change: <describe the permission change>
 ```
 
 The workflow will create either OpenSpec-backed artifacts or fallback artifacts:
@@ -104,6 +146,7 @@ The skill supports five modes:
 - **Checkpoint**: durable resume points after design, build batches, and verification.
 - **Auto transition**: controlled stage continuation with explicit decision points.
 - **Policy packs**: optional strict, team, or domain rules layered on top of the general core.
+- **Project init**: `$spec-to-ship init` creates agent-readable project docs and config.
 - **Verification evidence**: commands, results, review notes, skipped checks, and residual risk.
 - **Release readiness**: rollback, monitoring, migrations, flags, security/privacy impact.
 - **Prototype fidelity**: visual target inventory, screenshot comparison, accepted deviations, and design QA.

@@ -27,6 +27,8 @@ open -> design -> build -> verify -> release-ready -> archive
 
 Use `scripts/spec-to-ship-state.sh` to initialize and update state, and `scripts/spec-to-ship-guard.sh` before leaving a stage.
 
+`$spec-to-ship init` is a special project setup flow. It initializes project-level agent docs and `spec-to-ship/config.yaml` in the target project, then returns to normal change workflows.
+
 Comet-inspired mechanisms included in this skill:
 
 - Context pack and hash-based reread avoidance: `references/context-management.md`
@@ -53,6 +55,34 @@ Pick one mode at the start and record it in state.
 If unsure, choose `normal`. If a `tweak` or `hotfix` expands beyond its limits, pause and ask whether to upgrade to `normal`.
 
 If the user says the implementation must match a prototype, choose `prototype` unless the work is truly docs-only.
+
+## Init Flow
+
+Use this when the user says `$spec-to-ship init`, "initialize agent docs", "初始化 agent 文档", or asks to prepare a project for Spec to Ship.
+
+Goal: create long-lived project-level docs without generating application source code.
+
+Run:
+
+```bash
+bash <skill-dir>/scripts/spec-to-ship-init.sh <repo-root>
+```
+
+The init script creates missing files only:
+
+```text
+AGENTS.md
+docs/agent-map.md
+docs/architecture-index.md
+docs/decisions/0001-initialize-agent-docs.md
+docs/tech-debt.md
+docs/quality-score.md
+spec-to-ship/config.yaml
+```
+
+For existing projects, preserve existing files by default. Use `--force` only when the user explicitly asks to overwrite.
+
+For blank projects, keep placeholders honest. Do not invent source layout, commands, architecture, tests, deployment, or quality scores. Future Spec to Ship changes should replace placeholders with observed facts.
 
 ## Policy Pack Routing
 
@@ -235,9 +265,10 @@ Goal: produce evidence, not claims.
 1. Run appropriate project checks: build, tests, lint/typecheck, focused manual checks.
 2. Run code review when review mode is `standard` or `thorough`.
 3. For prototype mode, run visual verification: launch the app, capture screenshots for the same viewport(s), compare with the source, and record design QA findings.
-4. Fill `verify.md` with exact commands and results.
-5. Use hash-on-demand before rereading long artifacts: compare `context_hash` with `spec-to-ship-context.sh hash`.
-6. If any critical check fails, return to build after user confirmation.
+4. If `spec-to-ship/config.yaml` has `agent_docs.enabled: true`, check whether the change altered project structure, commands, tests, CI/CD, architecture, deployment, or known debt. Update agent docs or record that no update was needed.
+5. Fill `verify.md` with exact commands and results.
+6. Use hash-on-demand before rereading long artifacts: compare `context_hash` with `spec-to-ship-context.sh hash`.
+7. If any critical check fails, return to build after user confirmation.
 
 `verify.md` must include:
 
@@ -246,6 +277,7 @@ Goal: produce evidence, not claims.
 - Test/build/lint results
 - Acceptance scenario result
 - Review findings and disposition
+- Agent docs impact: updated docs or no-update reason when `agent_docs.enabled=true`
 - Known residual risk
 - For prototype mode: screenshot paths, viewport sizes, visual mismatches, accepted deviations, and final fidelity result
 
@@ -357,6 +389,12 @@ Initialize fallback state:
 
 ```bash
 bash <skill-dir>/scripts/spec-to-ship-state.sh init spec-to-ship/changes/<name> <mode>
+```
+
+Initialize project-level agent docs:
+
+```bash
+bash <skill-dir>/scripts/spec-to-ship-init.sh .
 ```
 
 Set a field:

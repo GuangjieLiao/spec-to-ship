@@ -2,7 +2,7 @@
 
 This guide explains how to use Spec to Ship in a new project.
 
-## 1. Install The Skill
+## 1. Install Or Update The Skill
 
 From this repository:
 
@@ -18,7 +18,42 @@ ls ~/.codex/skills/spec-to-ship/SKILL.md
 
 Restart or reload Codex so the skill is discoverable.
 
+To update an existing installation:
+
+```bash
+git pull
+bash scripts/install.sh
+```
+
+On Windows PowerShell, if `bash` is not available directly:
+
+```powershell
+& 'C:\Program Files\Git\bin\bash.exe' scripts/install.sh
+```
+
+The installer replaces the installed copy at `~/.codex/skills/spec-to-ship` with the current repository version.
+
 ## 2. Start A Change
+
+For a new or existing project, first initialize project-level agent docs:
+
+```text
+$spec-to-ship init
+```
+
+The init flow creates missing files only and preserves existing docs by default:
+
+```text
+AGENTS.md
+docs/agent-map.md
+docs/architecture-index.md
+docs/decisions/0001-initialize-agent-docs.md
+docs/tech-debt.md
+docs/quality-score.md
+spec-to-ship/config.yaml
+```
+
+For blank projects, the generated files intentionally use placeholders such as "No run command has been confirmed yet." Do not treat those placeholders as final architecture. Future Spec to Ship changes should replace them with observed facts.
 
 In any project, ask:
 
@@ -54,6 +89,14 @@ Example:
 
 ```text
 Use $spec-to-ship in strict-team mode for this API change: add CSV export for admin reports.
+```
+
+Equivalent explicit examples:
+
+```text
+Use $spec-to-ship with backend-api policy for this change: add CSV export for admin reports.
+Use $spec-to-ship with database-change policy for this change: add an index to report exports.
+Use $spec-to-ship with security-sensitive policy for this change: restrict report export permissions.
 ```
 
 When multiple packs apply, the stricter rule wins. Skipped policy checks should be recorded in `verify.md` with a reason.
@@ -103,6 +146,7 @@ Writes evidence into `verify.md`:
 - results
 - acceptance scenario checks
 - review findings
+- agent docs impact: updated docs or reason no update was needed
 - residual risk
 
 For prototype mode, verification must include visual evidence: source prototype path, implementation screenshot path, viewport size, visual mismatches, accepted deviations, and final fidelity result.

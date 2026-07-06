@@ -1,0 +1,18 @@
+version: 1
+default_mode: normal
+default_policy_packs:
+  - default-light
+review_mode: ask
+tdd_mode: ask
+release_policy: standard
+agent_docs:
+  enabled: true
+  require_update_check: true
+  files:
+    guide: AGENTS.md
+    map: docs/agent-map.md
+    architecture_index: docs/architecture-index.md
+    tech_debt: docs/tech-debt.md
+    quality_score: docs/quality-score.md
+    decisions_dir: docs/decisions
+
