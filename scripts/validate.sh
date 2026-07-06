@@ -41,6 +41,15 @@ grep -q 'pnpm run dev' "$init_tmp/AGENTS.md"
 grep -q 'pnpm test' "$init_tmp/docs/agent-map.md"
 grep -q 'src/' "$init_tmp/docs/agent-map.md"
 grep -q '.github/workflows' "$init_tmp/docs/agent-map.md"
+zh_tmp="$(mktemp -d)"
+cp "$init_tmp/package.json" "$zh_tmp/package.json"
+cp "$init_tmp/pnpm-lock.yaml" "$zh_tmp/pnpm-lock.yaml"
+mkdir -p "$zh_tmp/src" "$zh_tmp/tests"
+bash "$skill_dir/scripts/spec-to-ship-init.sh" "$zh_tmp" --lang zh-CN >/dev/null
+grep -q '## 项目概览' "$zh_tmp/AGENTS.md"
+grep -q 'pnpm run dev' "$zh_tmp/AGENTS.md"
+grep -q 'language: zh-CN' "$zh_tmp/spec-to-ship/config.yaml"
+rm -rf "$zh_tmp"
 printf 'custom\n' > "$init_tmp/AGENTS.md"
 bash "$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
 if [ "$(cat "$init_tmp/AGENTS.md")" != "custom" ]; then

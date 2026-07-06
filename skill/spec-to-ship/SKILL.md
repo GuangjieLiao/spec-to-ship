@@ -70,6 +70,12 @@ Run:
 bash <skill-dir>/scripts/spec-to-ship-init.sh <repo-root>
 ```
 
+For Chinese document bodies with stable English filenames:
+
+```bash
+bash <skill-dir>/scripts/spec-to-ship-init.sh <repo-root> --lang zh-CN
+```
+
 The init script creates missing files only:
 
 ```text
