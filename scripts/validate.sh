@@ -17,7 +17,7 @@ bash "$skill_dir/scripts/spec-to-ship-policy-lint.sh"
 
 echo "Running init workflow smoke test..."
 init_tmp="$(mktemp -d)"
-"$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
+bash "$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
 for expected in \
   AGENTS.md \
   docs/agent-map.md \
@@ -33,7 +33,7 @@ do
   fi
 done
 printf 'custom\n' > "$init_tmp/AGENTS.md"
-"$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
+bash "$skill_dir/scripts/spec-to-ship-init.sh" "$init_tmp" >/dev/null
 if [ "$(cat "$init_tmp/AGENTS.md")" != "custom" ]; then
   echo "ERROR: init should preserve existing files by default" >&2
   exit 1
