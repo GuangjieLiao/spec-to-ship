@@ -103,10 +103,13 @@ The skill supports five modes:
 - **Context pack**: compact handoff bundle with hashes for long sessions.
 - **Checkpoint**: durable resume points after design, build batches, and verification.
 - **Auto transition**: controlled stage continuation with explicit decision points.
+- **Policy packs**: optional strict, team, or domain rules layered on top of the general core.
 - **Verification evidence**: commands, results, review notes, skipped checks, and residual risk.
 - **Release readiness**: rollback, monitoring, migrations, flags, security/privacy impact.
 - **Prototype fidelity**: visual target inventory, screenshot comparison, accepted deviations, and design QA.
 - **Optional OpenSpec schema**: formalizes verify/release artifacts when OpenSpec is used.
+
+Bundled policy packs include `default-light`, `strict-team`, `frontend-prototype`, `backend-api`, `database-change`, and `security-sensitive`.
 
 ## Documentation
 
@@ -122,7 +125,7 @@ The skill supports five modes:
 bash scripts/validate.sh
 ```
 
-The validation script checks shell syntax, fallback workflow behavior, and optional OpenSpec schema validity when `openspec` is installed.
+The validation script checks shell syntax, policy-pack indexing, fallback workflow behavior, and optional OpenSpec schema validity when `openspec` is installed.
 
 ## License
 

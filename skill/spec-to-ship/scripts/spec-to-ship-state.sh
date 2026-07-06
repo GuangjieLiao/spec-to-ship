@@ -172,6 +172,7 @@ review_mode: null
 tdd_mode: null
 prototype_source: null
 prototype_fidelity: not_applicable
+policy_packs: default-light
 auto_transition: true
 context_compression: pack
 context_pack: null

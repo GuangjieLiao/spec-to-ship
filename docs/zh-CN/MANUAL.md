@@ -242,6 +242,19 @@ Spec to Ship 会先给任务分模式：
 - 小文案也走完整重流程，太慢。
 - 生产级功能只靠一句 prompt 直接写代码，太危险。
 
+### Policy packs：通用核心 + 可选强约束
+
+Spec to Ship 默认使用轻量规则，适合通用项目试跑。需要更严格或更具体的工程约束时，可以叠加 policy pack：
+
+- `default-light`：默认轻量规则。
+- `strict-team`：团队生产级强约束。
+- `frontend-prototype`：截图、Figma、mockup、响应式 UI 和视觉还原。
+- `backend-api`：API 契约、请求/响应、权限边界和兼容性。
+- `database-change`：迁移、回滚、数据安全和完整性。
+- `security-sensitive`：权限、密钥、隐私、PII、租户隔离和滥用风险。
+
+多个 pack 同时适用时，采用更严格的规则。跳过某个 policy 检查时，需要在 `verify.md` 里写明原因。
+
 ## 6. 常用命令
 
 初始化 fallback 变更：

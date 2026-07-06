@@ -14,6 +14,7 @@ This first version is intentionally runnable before team standards are finalized
 - OpenSpec owns WHAT: problem, scope, capability spec, scenarios, archive.
 - Superpowers owns HOW: brainstorming, planning, TDD, debugging, review, branch finish.
 - Product design / image-to-code skills own visual reconstruction when a reference image or mockup must be implemented faithfully.
+- Policy packs own optional team or domain rules that layer on top of the general core.
 - This skill owns FLOW: mode routing, stage state, prototype fidelity gates, required human confirmations, verification evidence, release readiness.
 
 Do not ask the user to understand schema or workflow internals before using the skill. Route the request, create the artifacts, and explain only the next decision point.
@@ -32,6 +33,7 @@ Comet-inspired mechanisms included in this skill:
 - Active/passive context compression recovery: `references/context-management.md`
 - Auto transition control: `references/auto-transition.md`
 - Phase drift guard rules: `references/phase-guard.md`
+- Optional policy packs: `references/policy-packs.md`
 - Optional OpenSpec custom schema: `references/openspec-schema.md`
 - Optional semantic code index check through `scripts/spec-to-ship-doctor.sh`
 - Prototype fidelity protocol: `references/prototype-fidelity.md`
@@ -51,6 +53,18 @@ Pick one mode at the start and record it in state.
 If unsure, choose `normal`. If a `tweak` or `hotfix` expands beyond its limits, pause and ask whether to upgrade to `normal`.
 
 If the user says the implementation must match a prototype, choose `prototype` unless the work is truly docs-only.
+
+## Policy Pack Routing
+
+Read `references/policy-packs.md` during open or design when:
+
+- the user asks for strict/team/company policy;
+- the change touches API, database, security, privacy, permissions, production release, or user-facing UI;
+- a prototype, screenshot, Figma frame, HTML mockup, or visual reference is part of the task.
+
+Always start from `assets/policy-packs/default-light.md`. Load only the extra packs whose triggers match the change. Do not load every policy pack by default.
+
+If multiple packs apply, compose them and let the stricter requirement win. Record selected packs in `.spec-to-ship.yaml` as `policy_packs` when practical, or in `design.md` and `verify.md` when state support is unavailable.
 
 ## Artifact Location
 
@@ -87,6 +101,7 @@ State defaults created by `spec-to-ship-state.sh init` include:
 - `verify_fail_count: 0`
 - `prototype_source: null`
 - `prototype_fidelity: not_applicable`
+- `policy_packs: default-light`
 
 Do not mutate `phase` directly. Use guard `--apply` or `spec-to-ship-state.sh transition`.
 
@@ -97,8 +112,9 @@ Goal: make the request clear enough to safely design or implement.
 1. Classify mode.
 2. Pick a kebab-case English change name.
 3. Create the artifact directory and initialize `.spec-to-ship.yaml`.
-4. Draft or update `proposal.md` and `spec.md`.
-5. Pause for user confirmation before leaving open.
+4. Load `references/policy-packs.md` when the request triggers policy selection, then load only matching packs.
+5. Draft or update `proposal.md` and `spec.md`.
+6. Pause for user confirmation before leaving open.
 
 `proposal.md` must include:
 
@@ -136,6 +152,7 @@ Skip only for `tweak` and simple `hotfix`.
 
 1. Read `references/engineering-constitution.md`.
 2. Read relevant standards only when triggered:
+   - Policy routing or stricter project rules: `references/policy-packs.md`
    - Prototype or screenshot implementation: `references/prototype-fidelity.md`
    - API change: `references/api-standards.md`
    - Database change: `references/database-standards.md`

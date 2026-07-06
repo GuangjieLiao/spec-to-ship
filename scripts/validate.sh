@@ -12,6 +12,9 @@ echo "Checking skill frontmatter..."
 grep -q '^name: spec-to-ship$' "$skill_dir/SKILL.md"
 grep -q '^description:' "$skill_dir/SKILL.md"
 
+echo "Checking policy pack index..."
+bash "$skill_dir/scripts/spec-to-ship-policy-lint.sh"
+
 echo "Running fallback workflow smoke test..."
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT

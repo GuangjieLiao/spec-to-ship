@@ -29,6 +29,7 @@ Benefit: saves context and reduces the chance that irrelevant rules distract the
 Detailed policies and mechanisms:
 
 - `engineering-constitution.md`: default engineering principles.
+- `policy-packs.md`: index for optional strict/team/domain policies.
 - `context-management.md`: context pack, checkpoints, active/passive compression.
 - `phase-guard.md`: rules that prevent phase drift.
 - `openspec-schema.md`: optional OpenSpec schema usage.
@@ -38,6 +39,21 @@ Detailed policies and mechanisms:
 Design choice: progressive disclosure.
 
 Benefit: an API-only change should not load database and security policy unless triggered.
+
+### `assets/policy-packs/`
+
+Bundled policy packs that layer stricter rules on top of the general workflow:
+
+- `default-light.md`
+- `strict-team.md`
+- `frontend-prototype.md`
+- `backend-api.md`
+- `database-change.md`
+- `security-sensitive.md`
+
+Design choice: policy packs are indexed assets, not inline `SKILL.md` content.
+
+Benefit: Spec to Ship can remain a general workflow while teams opt into stronger gates or domain-specific evidence.
 
 ### `scripts/spec-to-ship-state.sh`
 
@@ -68,6 +84,14 @@ Examples:
 Design choice: stage exit is guarded.
 
 Benefit: "done" must be backed by artifacts.
+
+### `scripts/spec-to-ship-policy-lint.sh`
+
+Checks that every bundled policy pack is listed in `references/policy-packs.md` and that `SKILL.md` points to the index.
+
+Design choice: the policy map is mechanically checked.
+
+Benefit: agents can discover policy rules reliably, and new packs cannot become orphaned documentation.
 
 ### `scripts/spec-to-ship-context.sh`
 
@@ -133,6 +157,7 @@ Benefit: teams can trial the workflow without committing to OpenSpec schema cust
 ```text
 User request
   -> open artifacts
+  -> policy pack selection
   -> prototype artifact when visual reference exists
   -> design artifact
   -> context pack + checkpoint

@@ -40,7 +40,25 @@ If the project does not have OpenSpec, the fallback artifact directory is used:
 spec-to-ship/changes/<change-name>/
 ```
 
-## 3. Work Through The Stages
+## 3. Select Policy Packs
+
+Spec to Ship starts with the lightweight default policy. Additional policy packs are loaded only when they match the change or when you ask for them:
+
+- `strict-team`: stricter team or production gates.
+- `frontend-prototype`: screenshot, Figma, mockup, responsive UI, or visual fidelity work.
+- `backend-api`: API contracts, request/response behavior, auth boundaries, or service integrations.
+- `database-change`: schema, migration, backfill, retention, or data-integrity work.
+- `security-sensitive`: permissions, secrets, PII, privacy, tenant isolation, or abuse risk.
+
+Example:
+
+```text
+Use $spec-to-ship in strict-team mode for this API change: add CSV export for admin reports.
+```
+
+When multiple packs apply, the stricter rule wins. Skipped policy checks should be recorded in `verify.md` with a reason.
+
+## 4. Work Through The Stages
 
 ### open
 
@@ -105,7 +123,7 @@ Writes `release.md`:
 
 After user confirmation, archives the change so future work can trust the artifacts.
 
-## 4. Useful Commands
+## 5. Useful Commands
 
 Initialize fallback artifacts:
 
@@ -138,7 +156,7 @@ bash ~/.codex/skills/spec-to-ship/scripts/install-openspec-schema.sh .
 openspec schema validate spec-to-ship
 ```
 
-## 5. What To Expect
+## 6. What To Expect
 
 The workflow is intentionally more disciplined than ordinary AI coding. It should stop at decision points instead of silently deciding:
 

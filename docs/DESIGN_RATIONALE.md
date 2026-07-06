@@ -45,7 +45,19 @@ Spec to Ship provides that coordination:
 
 Benefit: users do not need to remind the agent to update documents, verify evidence, or pause at decision points.
 
-## 4. Make Context Loss A Normal Case
+## 4. Keep Core General, Put Strict Rules In Policy Packs
+
+A reusable workflow should not assume every team has the same CI, release, monitoring, API, database, or security process.
+
+Spec to Ship keeps the core workflow general and adds optional policy packs:
+
+- `default-light` for low-friction adoption.
+- `strict-team` for stronger production discipline.
+- domain packs for frontend prototypes, backend APIs, database changes, and security-sensitive work.
+
+Benefit: new users can start lightly, while real teams can layer stricter rules without forking the skill or bloating `SKILL.md`.
+
+## 5. Make Context Loss A Normal Case
 
 Long AI coding tasks often hit context pressure. Spec to Ship treats that as expected.
 
@@ -58,19 +70,20 @@ Mechanisms:
 
 Benefit: the agent can recover from files, not memory.
 
-## 5. Use Scripts For Mechanical Rules
+## 6. Use Scripts For Mechanical Rules
 
 The agent still makes engineering judgments, but mechanical rules belong in scripts:
 
 - phase transition;
 - required artifact checks;
+- policy-pack discoverability;
 - release checklist;
 - schema installation;
 - evidence collection.
 
 Benefit: deterministic checks are easier to trust and improve.
 
-## 6. Keep Schema Optional
+## 7. Keep Schema Optional
 
 OpenSpec schema is useful, but forcing it too early makes adoption harder.
 
@@ -81,7 +94,7 @@ Spec to Ship supports both:
 
 Benefit: teams can start using the workflow immediately and formalize schema later.
 
-## 7. Optimize For Reviewable Work
+## 8. Optimize For Reviewable Work
 
 The workflow is not just about producing code. It is about producing code that another engineer can review.
 
