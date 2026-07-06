@@ -88,13 +88,15 @@ spec-to-ship/config.yaml
 
 Init scans the target project and records facts it can infer from files such as `package.json`, lockfiles, `pyproject.toml`, `go.mod`, `Cargo.toml`, common source/test directories, `.github/workflows/`, and Docker files. For blank projects, these files contain honest placeholders and update rules. Later `$spec-to-ship` changes should keep them current when project structure, commands, tests, architecture, deployment, or known debt changes.
 
-To generate Chinese project docs while keeping stable English filenames:
+By default, project docs are generated with Chinese body text while filenames stay stable in English.
+
+To generate English project docs:
 
 ```text
-$spec-to-ship init --lang zh-CN
+$spec-to-ship init --lang en
 ```
 
-The generated `spec-to-ship/config.yaml` records `agent_docs.language: zh-CN` so later maintenance can keep using Chinese.
+The generated `spec-to-ship/config.yaml` records `agent_docs.language` so later maintenance can keep using the selected language.
 
 In your target project, ask Codex:
 

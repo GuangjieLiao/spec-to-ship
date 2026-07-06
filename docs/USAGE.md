@@ -55,13 +55,15 @@ spec-to-ship/config.yaml
 
 For existing projects, it records facts it can infer from files such as `package.json`, lockfiles, `pyproject.toml`, `go.mod`, `Cargo.toml`, common source/test directories, `.github/workflows/`, and Docker files. For blank projects, the generated files intentionally use placeholders such as "No run command has been confirmed yet." Do not treat those placeholders as final architecture. Future Spec to Ship changes should replace them with observed facts.
 
-For Chinese project documentation:
+By default, project docs are generated with Chinese body text while filenames such as `AGENTS.md` and `docs/agent-map.md` stay stable in English.
+
+For English project documentation:
 
 ```text
-$spec-to-ship init --lang zh-CN
+$spec-to-ship init --lang en
 ```
 
-This keeps filenames such as `AGENTS.md` and `docs/agent-map.md` stable, but writes the document body in Chinese and records `agent_docs.language: zh-CN` in `spec-to-ship/config.yaml`.
+The selected language is recorded in `spec-to-ship/config.yaml` as `agent_docs.language`.
 
 In any project, ask:
 

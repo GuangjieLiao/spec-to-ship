@@ -88,13 +88,13 @@ spec-to-ship/config.yaml
 
 对于已有项目，它会根据 `package.json`、锁文件、`pyproject.toml`、`go.mod`、`Cargo.toml`、常见源码/测试目录、`.github/workflows/`、Docker 文件等可确认信息填充文档。对于空项目，这些文件会使用诚实的占位内容，例如“暂未确认运行命令”。不要把这些占位当成最终架构。后续每次 `$spec-to-ship` 开发时，如果新增或改变了目录结构、运行命令、测试、CI、部署、架构或技术债，就应该同步更新这些项目级文档。
 
-如果希望生成中文正文，同时保持稳定的英文文件名，可以使用：
+默认会生成中文正文，同时保持稳定的英文文件名。如果希望生成英文正文，可以使用：
 
 ```text
-$spec-to-ship init --lang zh-CN
+$spec-to-ship init --lang en
 ```
 
-这样仍然生成 `AGENTS.md`、`docs/agent-map.md` 等文件，但正文是中文，并且会在 `spec-to-ship/config.yaml` 里记录：
+默认情况下仍然生成 `AGENTS.md`、`docs/agent-map.md` 等文件，但正文是中文，并且会在 `spec-to-ship/config.yaml` 里记录：
 
 ```yaml
 agent_docs:

@@ -4,17 +4,18 @@ set -euo pipefail
 usage() {
   cat >&2 <<'EOF'
 Usage:
-  spec-to-ship-init.sh [target-dir] [--force] [--lang en|zh-CN]
+  spec-to-ship-init.sh [target-dir] [--force] [--lang zh-CN|en]
 
 Initializes project-level agent docs from bundled templates.
 By default, existing files are preserved.
+Default language is zh-CN.
 The initializer scans the target project and records only facts it can infer from files.
 EOF
 }
 
 target="."
 force="false"
-lang="en"
+lang="zh-CN"
 
 while [ "$#" -gt 0 ]; do
   case "$1" in

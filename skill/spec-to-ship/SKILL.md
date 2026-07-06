@@ -70,10 +70,12 @@ Run:
 bash <skill-dir>/scripts/spec-to-ship-init.sh <repo-root>
 ```
 
-For Chinese document bodies with stable English filenames:
+The default document body language is Chinese (`zh-CN`) while filenames stay stable in English.
+
+For English document bodies:
 
 ```bash
-bash <skill-dir>/scripts/spec-to-ship-init.sh <repo-root> --lang zh-CN
+bash <skill-dir>/scripts/spec-to-ship-init.sh <repo-root> --lang en
 ```
 
 The init script creates missing files only:
